@@ -1,0 +1,56 @@
+# =========================
+# Build results
+# =========================
+bin/
+obj/
+out/
+publish/
+
+# =========================
+# User-specific files
+# =========================
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+# VS Code / Rider / VS
+# =========================
+.vscode/
+.idea/
+.vs/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Secrets / Environment
+# =========================
+appsettings.Development.json
+*.env
+
+# =========================
+# Azure publish profiles
+# =========================
+Properties/PublishProfiles/
+
+# =========================
+# Node (if ever used)
+# =========================
+node_modules/
+
+# =========================
+# SSH keys (very important)
+# =========================
+*.pem
+*.key
+*.ppk
