@@ -15,6 +15,10 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Desktop()
+    {
+        return View();
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

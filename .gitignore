@@ -54,3 +54,7 @@ node_modules/
 *.pem
 *.key
 *.ppk
+
+# Ignorera bildfiler men låt mappar finnas kvar
+wwwroot/images/desktops/*
+!wwwroot/images/desktops/.gitkeep
