@@ -6,17 +6,45 @@
 
 <div class="row mt-4">
     <div class="col-md-6">
-        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded border" />
+        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded border product-details-image" />
     </div>
 
     <div class="col-md-6">
         <h1>@Model.Name</h1>
         <p class="text-muted">@Model.Brand</p>
         <h3 class="mb-3">@Model.Price kr</h3>
-        <p>@Model.Description</p>
-        <p><strong>Kategori:</strong> @Model.Category</p>
+        <p>@Model.LongDescription</p>
 
-        <a asp-controller="Products" asp-action="@(Model.Category == "Desktop" ? "Desktop" : "Laptops")"
+        <p><strong>Kategori:</strong> @Model.Category</p>
+        <p><strong>Lagerstatus:</strong> @Model.StockQuantity st</p>
+
+        <hr />
+
+        <h4>Specifikationer</h4>
+        <ul class="list-unstyled">
+            <li><strong>CPU:</strong> @Model.Specs.Cpu</li>
+            <li><strong>GPU:</strong> @Model.Specs.Gpu</li>
+            <li><strong>RAM:</strong> @Model.Specs.Ram</li>
+            <li><strong>Lagring:</strong> @Model.Specs.Storage</li>
+
+            @if (!string.IsNullOrWhiteSpace(Model.Specs.ScreenSize))
+            {
+                <li><strong>Skärmstorlek:</strong> @Model.Specs.ScreenSize</li>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Specs.FormFactor))
+            {
+                <li><strong>Form Factor:</strong> @Model.Specs.FormFactor</li>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Specs.OperatingSystem))
+            {
+                <li><strong>Operativsystem:</strong> @Model.Specs.OperatingSystem</li>
+            }
+        </ul>
+
+        <a asp-controller="Products"
+           asp-action="@(Model.Category == "Desktop" ? "Desktop" : "Laptops")"
            class="btn btn-outline-secondary mt-3">
             Tillbaka
         </a>

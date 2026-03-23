@@ -1,33 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyMvcApp.Data;
-using MyMvcApp.Models;
+using MyMvcApp.Services;
 
 namespace MyMvcApp.Controllers;
 
 public class ProductsController : Controller
 {
-    public IActionResult Desktop()
-    {
-        var desktops = ProductData.Products
-            .Where(p => p.Category == "Desktop")
-            .ToList();
+    private readonly IProductRepository _productRepository;
 
+    public ProductsController(IProductRepository productRepository)
+    {
+        _productRepository = productRepository;
+    }
+
+    public async Task<IActionResult> Desktop()
+    {
+        var desktops = await _productRepository.GetByCategoryAsync("Desktop");
         return View(desktops);
     }
 
-    public IActionResult Laptops()
+    public async Task<IActionResult> Laptops()
     {
-        var laptops = ProductData.Products
-            .Where(p => p.Category == "Laptop")
-            .ToList();
-
+        var laptops = await _productRepository.GetByCategoryAsync("Laptop");
         return View(laptops);
     }
 
-    public IActionResult Details(int id)
+    public async Task<IActionResult> Details(string id)
     {
-        var product = ProductData.Products
-            .FirstOrDefault(p => p.Id == id);
+        var product = await _productRepository.GetByIdAsync(id);
 
         if (product == null)
         {

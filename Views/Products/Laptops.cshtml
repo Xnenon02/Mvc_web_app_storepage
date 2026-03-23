@@ -14,6 +14,7 @@
             <img src="@product.ImageUrl" alt="@product.Name" class="product-image" />
             <h3 class="product-title">@product.Name</h3>
             <p class="product-brand">@product.Brand</p>
+            <p>@product.ShortDescription</p>
             <p class="product-price">@product.Price kr</p>
             <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-dark">
                 Visa produkt
