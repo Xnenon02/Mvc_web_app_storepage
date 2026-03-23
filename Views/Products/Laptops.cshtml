@@ -1,0 +1,23 @@
+﻿@model List<MyMvcApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Laptops";
+}
+
+<h1 class="mb-3">Laptop datorer</h1>
+<p>Här visas våra laptops.</p>
+
+<div class="product-grid">
+    @foreach (var product in Model)
+    {
+        <div class="product-card">
+            <img src="@product.ImageUrl" alt="@product.Name" class="product-image" />
+            <h3 class="product-title">@product.Name</h3>
+            <p class="product-brand">@product.Brand</p>
+            <p class="product-price">@product.Price kr</p>
+            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-dark">
+                Visa produkt
+            </a>
+        </div>
+    }
+</div>

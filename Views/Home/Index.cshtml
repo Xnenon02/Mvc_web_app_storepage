@@ -1,9 +1,13 @@
-﻿    @{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">The PC STORE</h1>
-	<p>We got the best prices ÉVER TO GOOD TO BE TRUE.</p>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-section text-center">
+    <h1 class="display-4 fw-bold">Welcome to TechStore</h1>
+    <p class="lead">Find powerful desktops and sleek laptops at great prices.</p>
+
+    <div class="mt-4">
+        <a asp-controller="Products" asp-action="Desktop" class="btn btn-dark btn-lg me-2">Browse Desktops</a>
+        <a asp-controller="Products" asp-action="Laptops" class="btn btn-outline-dark btn-lg">Browse Laptops</a>
+    </div>
 </div>
