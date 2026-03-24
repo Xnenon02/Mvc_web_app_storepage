@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="NewFolder\" />
     <Folder Include="wwwroot\css\images\desktop\" />
     <Folder Include="wwwroot\css\images\laptops\" />
   </ItemGroup>
