@@ -1,0 +1,52 @@
+name: Build and Deploy TechStore
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish --configuration Release --output ./publish
+
+      - name: Archive publish output
+        run: tar -czf techstore-release.tar.gz -C ./publish .
+
+      - name: Copy package to VM
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          source: "techstore-release.tar.gz"
+          target: "/tmp"
+
+      - name: Run deploy script on VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            chmod +x /var/www/techstore/current/deploy.sh || true
+            sudo bash /home/${{ secrets.VM_USER }}/deploy.sh || sudo bash /tmp/deploy.sh || true
+            sudo bash /var/www/techstore/deploy.sh || true
+            sudo bash /tmp/deploy.sh

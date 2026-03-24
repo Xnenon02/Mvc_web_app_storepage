@@ -1,20 +1,20 @@
-using MyMvcApp.Services;
 using MyMvcApp.Configuration;
+using MyMvcApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
 
-// Add services to the container.
 builder.Services.Configure<CosmosDbSettings>(
     builder.Configuration.GetSection("CosmosDb"));
 
 builder.Services.Configure<BlobStorageSettings>(
     builder.Configuration.GetSection("BlobStorage"));
-builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
+
+builder.Services.AddSingleton<IProductRepository, CosmosProductRepository>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -22,8 +22,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// Serva statiska filer från wwwroot (CSS, JS, images)
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -35,4 +33,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-

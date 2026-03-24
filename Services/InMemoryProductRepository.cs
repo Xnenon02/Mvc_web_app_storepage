@@ -71,6 +71,32 @@ public class InMemoryProductRepository : IProductRepository
                 FormFactor = "Mid Tower",
                 OperatingSystem = "Windows 11 Pro"
             }
+
+
+        },
+        new Product
+        {
+            Id = "desktop-004",
+            Name = "Creator Tower x",
+            Category = "Desktop",
+            Brand = "Lenovo",
+            Price = 1599900000,
+            ShortDescription = "Desktop för DA RICH",
+            LongDescription = "Byggd för videoredigering, bildhantering och produktivt arbete med flera program samtidigt.",
+            ImageUrl = "/images/desktops/desktop4.jpg",
+            StockQuantity = 1,
+            IsFeatured = true,
+            Specs = new ProductSpecs
+            {
+                Cpu = "AMD Ryzen 9",
+                Gpu = "NVIDIA RTX 4090",
+                Ram = "64 GB DDR5",
+                Storage = "4 TB NVMe SSD",
+                FormFactor = "Mid Tower",
+                OperatingSystem = "Windows 11 Pro"
+            }
+
+
         },
         new Product
         {
