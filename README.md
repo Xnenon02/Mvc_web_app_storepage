@@ -16,7 +16,7 @@ För att köra projektet behöver du:
 ## Klona projektet
 
 ```bash
-git clone DIN_REPO_LANK_HAR
+git clone
 cd Mvc_web_app_storepage
 Installera beroenden
 dotnet restore
